@@ -1,0 +1,6 @@
+[submodule "asplib"]
+	path = asplib
+	url = https://github.com/tomijanhunen/asplib
+[submodule "asptranslate"]
+	path = asptranslate
+	url = https://github.com/tomijanhunen/asptranslate
