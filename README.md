@@ -6,8 +6,9 @@ For the moment, the ASPTOOLS collection builds on the following publicly availab
 1. *asplib*
 2. *asptranslate*
 
-Some utilies have been previously published as binaries under the respective
+Some utilities have been previously published as binaries under the respective
 [Aalto website](https://research.ics.aalto.fi/software/asp/) but they are
-gradually moving under this project. The collection is mostly legacy
-research software that are made public in hope being useful for future
-research.
+gradually moving under this project. The collection partly consists of legacy
+research software, made public in hope being useful for future research, but
+also some new utilities will be added.
+
