@@ -4,3 +4,6 @@
 [submodule "asptranslate"]
 	path = asptranslate
 	url = https://github.com/tomijanhunen/asptranslate
+[submodule "asptools"]
+	path = asptools
+	url = https://github.com/tomijanhunen/asptools
