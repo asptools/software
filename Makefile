@@ -1,5 +1,10 @@
 SHELL=bash
 
+install:
+	cp asplib/bin/* bin/
+	cp asptools/bin/* bin/
+	cp asptranslate/bin/* bin/
+
 modules: .init
 
 .init:
