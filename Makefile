@@ -4,6 +4,8 @@ install:
 	cp asplib/bin/* bin/
 	cp asptools/bin/* bin/
 	cp asptranslate/bin/* bin/
+	cp kissat/build/kissat bin/
+	cp wasp/build/release/wasp bin/
 
 modules: .init
 

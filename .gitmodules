@@ -7,3 +7,15 @@
 [submodule "asptools"]
 	path = asptools
 	url = https://github.com/tomijanhunen/asptools
+[submodule "kissat"]
+	path = kissat
+	url = https://github.com/arminbiere/kissat
+[submodule "clasp"]
+	path = clasp
+	url = https://github.com/potassco/clasp
+[submodule "clingo"]
+	path = clingo
+	url = https://github.com/potassco/clingo
+[submodule "wasp"]
+	path = wasp
+	url = https://github.com/alviano/wasp
