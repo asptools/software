@@ -1,0 +1,124 @@
+
+# Select parts to build (set both to zero to build only libhspsutil.a)
+buildlibplan = 1
+buildlibpddl = 1
+
+# Include/link GLPK with main build (this is required for some
+# compile-time options to some programs; in particular, when compiling
+# without GLPK, the option USE_LB3 must be disabled (commented out) in
+# ilb.cc).
+buildwithglpk = 0
+
+# Include/link SCIP with main build. This is used only by test_ilb, and
+# only when it is compile-time configured to use SCIP as the hitting set
+# solver (options ILA_USE_HS_EXTERN or HPLUS_USE_RP_EXTERN, with USE_SCIP
+# in ilb.cc).
+# Note: To compile the SCIP without the garbage that is not needed, use
+# "make ZIMPL=false ZLIB=false READLINE=false" when compiling SCIP. If
+# not compiled in this trimmed down fashion, any program that links SCIP
+# will also have to link all libraries that the complete SCIP library
+# (and programs) depend on.
+buildwithscip = 0
+
+# Include/link CPLEX with main build. This is used only by test_ilb, and
+# only when it is compile-time configured to use CPLEX as the hitting set
+# solver (options ILA_USE_HS_EXTERN and USE_CPLEX in ilb.cc).
+buildwithcplex = 0
+
+# Optional components to include in the build (they're not really
+# optional; some programs, e.g., pddlcat, won't compile without them).
+BUILDOPT = -DBUILD_WITH_HTN -DBUILD_WITH_SOFT -DBUILD_WITH_BOOSTING
+
+# Define compiler/linker:
+CC     = gcc
+CCC    = g++
+CCDEP  = $(CCC) -MM
+LINK   = g++
+
+# Define bison++ and flex++.
+# NOTE: These are NOT the standard GNU programs, but an older C++
+# adaption. They used to be available from
+# ftp://ftp.tu-darmstadt.de/pub/programming/languages/C++/tools/flex++bison++/
+# but I don't know if that's the case anymore.
+BISON  = bison++
+FLEX   = flex++
+
+# If you can not find/compile bison++/flex++, try using the "fake" programs
+# as shown below. These are simple scripts that just copy pregenerated files.
+# Replace <PLATFORM> by one of 'cygwin', 'linux' or 'solaris' (only the
+# 'linux' option is currently working).
+# BISON  = locals/fake-bison++ <PLATFORM>
+# FLEX   = locals/fake-flex++ <PLATFORM>
+
+# Define compiler/linker flags:
+DEBUG = -g
+OPTIMIZE = -O2
+PROFILE = # -pg
+
+# Flags needed for compiler to output object code that can go in shared lib
+SHARED = -fPIC
+
+CFLAGS = $(DEBUG) $(OPTIMIZE) $(PROFILE) $(BUILDOPT) -I.
+LFLAGS = $(DEBUG) $(OPTIMIZE) $(PROFILE) -L.
+
+# Libraries to be linked.
+# The math lib may be needed if NTYPE_FLOAT is used (see config.h).
+# The malloc lib may be needed if RSS_FROM_MALLINFO is used (see config.h).
+LLIBS  = # -lm -lmalloc
+
+# To create a statically linked executable (with buildwithglpk=1), the
+# following might work:
+#
+# LINK   = g++ -static -static-libgcc
+# LLIBS = -lglpk -lgmp -lltdl -lz -ldl
+#
+# (Thanks to Malte Helmert for discovering it.)
+
+# Additional flags and libs for sasplan (only required by hspIAO)
+SASPLAN_DIR = ../../sasplan
+SASPLAN_CFLAGS = -I$(SASPLAN_DIR) -I../../LEDA-4.2/incl
+SASPLAN_LFLAGS = -L../../LEDA-4.2
+SASPLAN_LLIBS  = -lG -lL -lstdc++ -lm
+
+# Additional flags and libs for libPG (only required by pddl3sim)
+LIBPG_DIR = /home/path/pkg/libpg
+LIBPG_CFLAGS = -I$(LIBPG_DIR)
+LIBPG_LFLAGS = -L$(LIBPG_DIR)
+LIBPG_LLIBS = -lpg
+
+# Additional flags and libs for BuDDy (only required by SPP)
+BUDDY_CFLAGS =
+BUDDY_LFLAGS =
+BUDDY_LLIBS = -lbdd
+
+# Additional flags and libs for Expat (only required by MOST)
+EXPAT_CFLAGS =
+EXPAT_LFLAGS =
+EXPAT_LLIBS = -lexpat
+
+# Additional flags and libs for Crikey3.1 (only required by amse21)
+CRIKEY_DIR = $HOME/pkg/crikey3.1
+CRIKEY_CFLAGS =
+CRIKEY_LFLAGS =
+CRIKEY_LLIBS  =
+
+# Additional flags and libs for GLPK (required by tapcg, and test_ilb
+# with LB3 option).
+GLPK_CFLAGS =
+GLPK_LFLAGS =
+GLPK_LLIBS  = -lglpk
+
+# Additional flags and libs for SCIP (required by test_ilb when used
+# as extern solver).
+SCIP_CFLAGS = # -I ...
+SCIP_LFLAGS = # -L ...
+SCIP_LLIBS  = -lscip -llpispx -lsoplex -lnlpi.cppad
+
+# Additional flags and libs for CPLEX (required by test_ilb when used
+# as extern solver).
+CPLEX_CFLAGS = -DIL_STD # -I ...
+CPLEX_LFLAGS = # -L ...
+CPLEX_LLIBS  = -lilocplex -lcplex -lconcert -lpthread
+
+# Extension for executables (set to empty for all but cygwin).
+EXEEXT =
