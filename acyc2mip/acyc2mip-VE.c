@@ -53,18 +53,9 @@ void _version_acyc2solver_c()
 
 void usage()
 {
-  fprintf(stderr, "\nusage:");
-  fprintf(stderr, "   acyc2solver <options> <file>\n\n");
-  fprintf(stderr, "options:\n");
-  fprintf(stderr, "   -h or --help -- print help message\n");
-  fprintf(stderr, "   --version -- print version information\n");
-  fprintf(stderr, "   -v -- verbose mode (human readable)\n");
-  fprintf(stderr, "   -d -- drop optimization statements\n");
-  fprintf(stderr, "   -g -- add the graph (for --pb)\n");
-  fprintf(stderr, "   --bv   -- bit-vector logic\n");
-  fprintf(stderr, "   --diff -- difference logic (default)\n");
+
   fprintf(stderr, "   --mip  -- mixed integer program\n");
-  fprintf(stderr, "   --pb   -- pseudo-Boolean theory\n");
+
 
   fprintf(stderr, "\n");
 
@@ -113,7 +104,7 @@ int main(int argc, char **argv)
   int option_graph = 0;
   int option_bv = 0;
   int option_diff = 0;
-  int option_mip = 0;
+  int option_mip = -1;
   int option_pb = 0;
 
   char *arg = NULL;
