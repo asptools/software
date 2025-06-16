@@ -13,3 +13,6 @@
 [submodule "wasp"]
 	path = wasp
 	url = https://github.com/alviano/wasp
+[submodule "sgb"]
+	path = sgb
+	url = https://github.com/ascherer/sgb.git

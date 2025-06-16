@@ -1,5 +1,8 @@
 SHELL=bash
 
+all:
+	cp -f Makefile-for-sgb sgb/Makefile
+
 install:
 	cp asplib/bin/* bin/
 	cp asptools/bin/* bin/
