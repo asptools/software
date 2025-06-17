@@ -1,7 +1,8 @@
 SHELL=bash
 
 all:
-	cp -f Makefile-for-sgb sgb/Makefile
+	cp -f Makefile-for-sgb sgb/Makefile # Patch
+	cp -f .gitignore-for-sgb sgb/.gitignore # Reduce status info
 
 install:
 	cp asplib/bin/* bin/

@@ -1,0 +1,9 @@
+*.o
+*.h
+*.c
+certified
+.libs
+lib
+sgbdir
+libgb.a
+libgb.la

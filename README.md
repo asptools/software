@@ -13,3 +13,8 @@ gradually moving under this project. The collection partly consists of legacy
 research software, made public in hope being useful for future research, but
 also some new utilities will be added.
 
+The following repositories are included as submodules:
+
+1. *sgb*
+2. *kissat*
+3. *wasp*
